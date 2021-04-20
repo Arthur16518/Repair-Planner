@@ -1,0 +1,93 @@
+﻿@model Repair_Planner.Data.Models.Task
+@{
+    Layout = null;
+}
+<div id="view-task-container" class="blurred-container">
+    <div id="view-task-window" class="add-task-window window">
+        <div class="flex-box-label-cross">
+            <div class="flex-box-horizontal task-label-container" style="width: 35vw;">
+                <div class="equipment-pic">
+                    <img class="pic" src="~/Sources/svg/@(Model.equipmentType).svg" />
+                </div>
+                <h1 class="task-label" style="font-size: 3vh">@Model.shortDescription</h1>
+            </div>
+            <svg class="cross" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="CloseTaskView()">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1688 19.3591C17.7606 19.953 18.72 19.953 19.3118 19.3591C19.9035 18.7651 19.9035 17.8022 19.3118 17.2083L12.2403 10.1227L19.5562 2.79175C20.1479 2.1978 20.148 1.23492 19.5562 0.640973C18.9644 0.0470207 18.005 0.0470207 17.4133 0.640973L10.0974 7.97193L2.58673 0.445423C1.995 -0.148474 1.03558 -0.148474 0.443797 0.445423C-0.147932 1.03937 -0.147932 2.00231 0.443797 2.5962L7.95451 10.1227L0.688279 17.4038C0.0965503 17.9977 0.0964952 18.9607 0.688279 19.5546C1.28001 20.1485 2.23943 20.1485 2.83121 19.5546L10.0974 12.2734L17.1688 19.3591Z" fill="#DCDCDC" />
+            </svg>
+        </div>
+        <div class="scrolling-div">
+            <table class="task-table">
+                <tr>
+                    <td class="col1 text" style="vertical-align: middle">
+                        Код задачи:
+                    </td>
+                    <td class="text">
+                        <div class="task-code">
+                            @Model.taskCode
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Статус:
+                    </td>
+                    @{ string status = "Активно";
+                        if (!Model.isActive)
+                            status = "Завершено";}
+                    <td class="col2 text">
+                        @status
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Модель:
+                    </td>
+                    <td class="col2 text">
+                        @Model.equipmentModel
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Серийный номер:
+                    </td>
+                    <td class="col2 text">
+                        @Model.serialNumber
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Дата получения:
+                    </td>
+                    <td class="col2 text">
+                        @Model.dateOfRecieving.ToShortDateString()
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Состояние:
+                    </td>
+                    <td class="col2 text">
+                        @Model.condition
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Подробное описание:
+                    </td>
+                    <td class="col2 text">
+                        @Model.defects
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col1 text">
+                        Клиент:
+                    </td>
+                    <td class="col2 text">
+                        @await Component.InvokeAsync("ClientShortString", Model)
+                    </td>
+                </tr>
+            </table>
+            <div id="stage-list">@await Component.InvokeAsync("StageList", Model)</div>
+        </div>
+    </div>
+</div>

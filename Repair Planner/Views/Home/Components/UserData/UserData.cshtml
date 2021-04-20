@@ -1,0 +1,17 @@
+﻿@model Repair_Planner.Data.Models.User
+@{
+    Layout = null;
+}
+    <div class="user-data-container flex-box-vertical">
+        <div class="avatar">
+            <img src="~/Sources/avatar.jpg?v=@DateTime.Now.Millisecond" alt="">
+        </div>
+        <h1>@Model.firstName&nbsp;@Model.lastName</h1>
+        <p class="text flex-item">@await Component.InvokeAsync("OrganizationName", Model.OrganizationId)</p>
+        <p class="text light-purple flex-item">@Model.eMail</p>
+        <p class="text light-purple flex-item">+@Model.phoneNumber</p>
+        <div class="flex-box-horizontal flex-item">
+            <a href="/Account/SignOut"><button class="button-purple">ВЫЙТИ</button></a>
+            <button class="button-purple" onclick="CreateRequestCode()">СОЗДАТЬ КОД</button>
+        </div>
+    </div>

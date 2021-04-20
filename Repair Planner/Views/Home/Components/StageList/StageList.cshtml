@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Repair_Planner.Data.Models.Stage>
+@{
+    Layout = null;
+}
+@{ bool isActive = true; }
+<h1 class="task-label progress-label">Прогресс</h1>
+@foreach (var stage in Model)
+{
+<div class="stage-flex-box">
+    <div class="date-time">
+        <h1 class="date">@stage.date.ToShortDateString()</h1>
+        <p class="time">@stage.date.ToShortTimeString()</p>
+    </div>
+    <div class="mark">
+        <svg class="circle-mark" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8.5" cy="8.5" r="8.5" fill="#7203BA" />
+        </svg>
+        @if (stage.name != "Завершено")
+        {
+            <svg class="line-mark" viewBox="0 0 7 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="7" height="80" rx="3.5" fill="#7203BA" />
+            </svg>
+        }
+        else
+        {
+            isActive = false;
+            <svg class="line-mark finished" viewBox="0 0 7 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="7" height="80" rx="3.5" fill="#7203BA" />
+            </svg>
+        }
+    </div>
+    <div>
+        <h1 class="stage-name">@stage.name</h1>
+        <p class="text" style="font-size: 2vh; text-align: left; margin-top: 0.5vh">@await Component.InvokeAsync("ShortUserData", stage.UserId)</p>
+    </div>
+    @if (stage.name != "Завершено" && stage.name != "Добавлено")
+    {
+        <div class="stage-cost">
+            @(stage.cost) р.
+        </div>
+    }    
+</div>
+}
+<div id="add-stage-form"></div>
+@if (isActive)
+{
+    <button class="button-purple add-progress-button" onclick="ShowAddStageForm(@Model.First().TaskId)">
+        <svg id="plus-stage" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="plus-button-svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6923 0C13.8606 0 14.8077 1.11929 14.8077 2.5V22.5C14.8077 23.8807 13.8606 25 12.6923 25C11.524 25 10.5769 23.8807 10.5769 22.5V2.5C10.5769 1.11929 11.524 0 12.6923 0Z" fill="white" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.6923C0 11.524 1.11929 10.5769 2.5 10.5769H22.5C23.8807 10.5769 25 11.524 25 12.6923C25 13.8606 23.8807 14.8077 22.5 14.8077H2.5C1.11929 14.8077 0 13.8606 0 12.6923Z" fill="white" />
+        </svg>
+    </button>
+}
+else
+{
+    <h1 style="text-align: right; padding-top: 2vh;">Итого: <v class="light-purple">@await Component.InvokeAsync("TotalSum", Model) р.</v></h1>
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Repair_Planner.Data.Models.Task>
+@{
+    Layout = null;
+}
+@foreach (var task in Model)
+{
+    <div class="task @(task.isActive ? "":"not-active")" onclick="ShowTask('@task.id')">
+        <div class="flex-box-vertical flex-box-task">
+            <div class="flex-box-horizontal task-label-container">
+                <div class="equipment-pic">
+                    <img class="pic" src="~/Sources/svg/@(task.equipmentType).svg" />
+                </div>
+                <h1 class="task-label">@task.shortDescription</h1>
+            </div>
+            @{
+                int dateDiff = (DateTime.Now - task.dateOfRecieving).Days;
+                string res = dateDiff.ToString();
+                bool betTenAndTwenty = false;
+                if (dateDiff >= 10 && dateDiff <= 20)
+                    betTenAndTwenty = true;
+                dateDiff %= 10;
+                if (betTenAndTwenty)
+                    res = res + " дней";
+                else if (dateDiff == 1)
+                    res = res + " день";
+                else if (dateDiff <= 4 && dateDiff != 0)
+                    res = res + " дня";
+                else
+                    res = res + " дней";
+            }
+            <p class="text task-p">Статус: активен @res</p>
+            <p class="text task-p">Последний прогресс: @await Component.InvokeAsync("LastActivity", task)</p>
+            <p class="text task-p">Клиент: @await Component.InvokeAsync("ClientShortString", task) </p>
+        </div>
+    </div>
+}

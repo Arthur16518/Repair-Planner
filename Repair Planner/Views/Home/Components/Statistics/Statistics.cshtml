@@ -1,0 +1,27 @@
+﻿@model Repair_Planner.Data.Models.Statistics
+<div class="user-data-container" style="margin-top: 2vh">
+    <h1 style="text-align: left">Статистика за месяц</h1>
+    <div class="chart-container">
+        @foreach (var item in Model.graph)
+        {
+            <div class="chart-item">
+                <div class="chart-block" style="height: @item.heightPercent.ToString()%"></div>
+                <p class="text chart-day">@item.day.Day.ToString()</p>
+            </div>
+        }
+    </div>
+    <div class="flex-box-horizontal">
+        <div>
+            <h1 class="light-purple">@Model.totalWorks</h1>
+            <p class="text">работ выполнено</p>
+        </div>
+        <div>
+            <h1 class="light-purple">@Model.average</h1>
+            <p class="text">работ в день</p>
+        </div>
+        <div>
+            <h1 class="light-purple">@Model.totalDays</h1>
+            <p class="text">дней отработано</p>
+        </div>
+    </div>
+</div>

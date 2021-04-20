@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Repair_Planner.Data.Models.Stage>
+@{
+    Layout = null;
+}
+@{ bool isActive = true; }
+<h1 class="task-label progress-label">Прогресс</h1>
+@foreach (var stage in Model)
+{
+    <div class="stage-flex-box">
+        <div class="date-time">
+            <h1 class="date">@stage.date.ToShortDateString()</h1>
+            <p class="time">@stage.date.ToShortTimeString()</p>
+        </div>
+        <div class="mark">
+            <svg class="circle-mark" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8.5" cy="8.5" r="8.5" fill="#7203BA" />
+            </svg>
+            @if (stage.name != "Завершено")
+            {
+                <svg class="line-mark" viewBox="0 0 7 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="7" height="80" rx="3.5" fill="#7203BA" />
+                </svg>
+            }
+            else
+            {
+                isActive = false;
+                <svg class="line-mark finished" viewBox="0 0 7 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="7" height="80" rx="3.5" fill="#7203BA" />
+                </svg>
+            }
+        </div>
+        <div>
+            <h1 class="stage-name">@stage.name</h1>
+            <p class="text stage-text" style="font-size: 2vh; text-align: left; margin-top: 0.5vh">@await Component.InvokeAsync("ShortUserData", stage.UserId)</p>
+        </div>
+        @if (stage.name != "Завершено" && stage.name != "Добавлено")
+        {
+            <div class="stage-cost">
+                @(stage.cost) р.
+            </div>
+        }
+    </div>
+}
+@if (!isActive)
+{
+    <h1 class="text-table" style="text-align: right; padding-top: 2vh;">Итого: <v class="light-purple">@await Component.InvokeAsync("TotalSum", Model) р.</v></h1>
+}

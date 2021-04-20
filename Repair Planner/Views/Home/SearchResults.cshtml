@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Repair_Planner.Data.Models.Task>
+    <div  id="search-container" class="flex-box-horizontal" style="justify-content: space-between; margin: 2vh 0; width: 65vw">
+        <p class="text section-name" style="width: 45vw; text-align: left">Результаты поиска (@Model.Count())</p>
+        <button class="button-purple" style="margin-right: 2vh;" onclick="document.getElementById('search-container').removeAttribute('id'); UpdateTaskList()">
+            ЗАКРЫТЬ ПОИСК
+        </button>
+    </div>
+@Html.Partial("TaskList", Model)

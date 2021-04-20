@@ -1,0 +1,44 @@
+﻿@model bool
+@if (Model)
+{
+    <svg class="zoom-entrance" viewBox="0 0 108 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 6vh; height: 6vh">
+        <g filter="url(#filter0_d)">
+            <path d="M78 46C78 32.7452 67.2548 22 54 22C40.7452 22 30 32.7452 30 46C30 59.2548 40.7452 70 54 70C67.2548 70 78 59.2548 78 46Z" fill="#4CAF50" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M67.4207 40.0264C68.4707 38.6567 68.2116 36.6951 66.8418 35.6451C65.4721 34.5951 63.5105 34.8542 62.4605 36.224L50.7743 51.4682L44.3347 45.0286C43.1143 43.8082 41.1357 43.8082 39.9153 45.0286C38.6949 46.249 38.6949 48.2277 39.9153 49.4481L48.7542 58.2869C49.6572 59.1899 50.9754 59.4248 52.0943 58.9914C52.7238 58.8157 53.3036 58.4418 53.7318 57.8832L67.4207 40.0264Z" fill="white" />
+        </g>
+        <defs>
+            <filter id="filter0_d" x="0" y="-8" width="108" height="108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="15" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0.298039 0 0 0 0 0.686275 0 0 0 0 0.313726 0 0 0 0.6 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+            </filter>
+        </defs>
+    </svg>
+
+}
+else
+{
+    <svg class="zoom-entrance"  viewBox="0 0 108 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 6vh; height: 6vh">
+        <g filter="url(#filter1_d)">
+            <path d="M78 46C78 32.7452 67.2548 22 54 22C40.7452 22 30 32.7452 30 46C30 59.2548 40.7452 70 54 70C67.2548 70 78 59.2548 78 46Z" fill="#E52937" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M61.3796 57.3588C62.4535 58.4327 64.1947 58.4327 65.2687 57.3588C66.3426 56.2848 66.3426 54.5436 65.2687 53.4697L58.2426 46.4437L65.7123 38.974C66.7862 37.9 66.7863 36.1589 65.7123 35.0849C64.6383 34.0109 62.8972 34.0109 61.8232 35.0849L54.3535 42.5546L46.5303 34.7313C45.4564 33.6574 43.7152 33.6574 42.6412 34.7313C41.5673 35.8053 41.5673 37.5465 42.6412 38.6204L50.4645 46.4437L43.0849 53.8232C42.011 54.8972 42.0109 56.6384 43.0849 57.7123C44.1588 58.7863 45.9 58.7862 46.974 57.7123L54.3535 50.3327L61.3796 57.3588Z" fill="white" />
+        </g>
+        <defs>
+            <filter id="filter1_d" x="0" y="-8" width="108" height="108" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="15" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0.898039 0 0 0 0 0.160784 0 0 0 0 0.215686 0 0 0 0.6 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+            </filter>
+        </defs>
+    </svg>
+
+}
+<div class="@Model.ToString()" style="display: none"></div>

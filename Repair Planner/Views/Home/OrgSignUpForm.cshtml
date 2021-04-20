@@ -1,0 +1,28 @@
+﻿<div id="add-results">
+    <form action="/Home/AddOrganization" method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#add-results" style="width: 35vw">
+        <h1 style="font-size: 3.5vh">Зарегистрировать организацию</h1>
+        <div class="flex-box-option adding-item">
+            <p class="text">Название организации:</p>
+            <input required type="text" placeholder="Название" class="adding-input" name="name">
+        </div>
+        <div class="flex-box-option adding-item">
+            <p class="text">Адрес организации:</p>
+            <input required type="text" placeholder="Адрес" class="adding-input" name="adress">
+        </div>
+        <div class="flex-box-option adding-item">
+            <p class="text">Номер телефона 1:</p>
+            <input required type="text" placeholder="Номер телефона" class="adding-input" name="phone1">
+        </div>
+        <div class="flex-box-option adding-item">
+            <p class="text">Номер телефона 2</p>
+            <input type="text" placeholder="Номер телефона" class="adding-input" name="phone2">
+        </div>
+        <div class="flex-box-option adding-item">
+            <p class="text">Описание организации:</p>
+            <textarea class="text-area text" cols="60" rows="3" name="description"></textarea>
+        </div>
+        <div class="flex-box-vertical">
+            <button class="button-purple" style="margin-top: 3vh;" type="submit">ЗАРЕГИСТРИРОВАТЬ</button>
+        </div>
+    </form>
+</div>
